@@ -73,7 +73,7 @@ namespace TicTackToe
                 {
                     btn.Content = Enums.PlaySymbolToString(currentPlayer.symbol);
                 }
-                //If the player makes the winning move then end the game
+                //If the player makes the winning move, then end the game
                 if (!pField.gameState.Equals(Enums.GameState.IN_PROGRESS))
                     ShowEndScreen();
                 else
