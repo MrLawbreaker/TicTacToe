@@ -17,13 +17,13 @@ namespace TicTackToe
 {
     public partial class MainWindow : Window
     {
-        PlayField pField;
+        private PlayField pField;
 
-        Dictionary<String, Button> btn_dictionary;
+        private Dictionary<String, Button> btn_dictionary;
 
-        Player player1;
-        Player player2;
-        Player currentPlayer;
+        private Player player1;
+        private Player player2;
+        private Player currentPlayer;
 
         public MainWindow()
         {
@@ -32,6 +32,9 @@ namespace TicTackToe
             initDic();
         }
 
+        /// <summary>
+        /// Initialize all Objects needed for the game
+        /// </summary>
         private void init()
         {
             pField = new PlayField();
@@ -45,6 +48,9 @@ namespace TicTackToe
             txt_Message.Text = String.Format("Player {0} begins!", Enums.PlaySymbolToString(currentPlayer.symbol));
         }
 
+        /// <summary>
+        /// Initializes the dictionary
+        /// </summary>
         private void initDic(){
             #region Buttons to Dictionary
             //Adding all buttons to a dictionary for easier use later on
@@ -63,6 +69,11 @@ namespace TicTackToe
             #endregion
         }
 
+        /// <summary>
+        /// Will make a turn on the field when allowed
+        /// </summary>
+        /// <param name="x">X Coordinate of the made turn</param>
+        /// <param name="y">Y Coordinate of the made turn</param>
         private void MakeTurn(byte x, byte y)
         {
             //Set the field to show the players input
@@ -84,6 +95,9 @@ namespace TicTackToe
             
         }
 
+        /// <summary>
+        /// Sets the Window into the Ending screen state
+        /// </summary>
         private void ShowEndScreen()
         {
             //Disable all buttons
@@ -109,6 +123,9 @@ namespace TicTackToe
             }
         }
 
+        /// <summary>
+        /// Resets the windows components and the playfield
+        /// </summary>
         private void Reset()
         {
             //Enable all Buttons
@@ -131,17 +148,20 @@ namespace TicTackToe
 
         }
 
+        /// <summary>
+        /// Switches the current player
+        /// </summary>
         private void SwitchPlayer()
         {
             if (currentPlayer.Equals(player1))
                 currentPlayer = player2;
             else
                 currentPlayer = player1;
-
+            
             txt_Message.Text = String.Format("Player {0}, it is your turn!", Enums.PlaySymbolToString(currentPlayer.symbol));
         }
 
-
+        #region Event Handler
         private void btn_Reset_Click(object sender, RoutedEventArgs e)
         {
             Reset();
@@ -192,6 +212,7 @@ namespace TicTackToe
         {
             MakeTurn(2, 2);
         }
+        #endregion
         #endregion
     }
 }

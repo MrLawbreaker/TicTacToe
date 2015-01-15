@@ -22,6 +22,13 @@ namespace TicTackToe
             ResetField();
         }
 
+        /// <summary>
+        /// Tries to set the given field will return false when the move was illegal
+        /// </summary>
+        /// <param name="x">X coordinate of the move</param>
+        /// <param name="y">Y coordinate of the move</param>
+        /// <param name="value">PlaySymbol that is going to be set into the given field</param>
+        /// <returns></returns>
         public Boolean SetField(byte x, byte y, Enums.PlaySymbol value)
         {
             Boolean isEmpty = this.field[x, y].Equals(Enums.PlaySymbol.EMPTY);
@@ -39,11 +46,19 @@ namespace TicTackToe
             }
         }
 
+        /// <summary>
+        /// Returns the playfield
+        /// </summary>
+        /// <returns></returns>
         public Enums.PlaySymbol[,] GetField()
         {
             return field;
         }
 
+        /// <summary>
+        /// Resets the playfield 
+        /// All fields will have the EMPTY value
+        /// </summary>
         public void ResetField()
         {
             for (int i = 0; i < fieldSize; i++)
@@ -59,6 +74,9 @@ namespace TicTackToe
             lastSetField[1] = -1;
         }
 
+        /// <summary>
+        /// Checks if the last made move brought the playfield into a winning or ending state
+        /// </summary>
         private void CheckGameOver()
         {
             //Minimum number of moves for a win needs to be reached
@@ -134,6 +152,10 @@ namespace TicTackToe
 
         }
 
+        /// <summary>
+        /// Represents the playfield as a String
+        /// </summary>
+        /// <returns>Returns a String with fieldSize number of lines</returns>
         public override String ToString()
         {
             String result = "";
